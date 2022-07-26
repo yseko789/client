@@ -55,9 +55,9 @@ const FilmList: React.FC<MovieListProps> = ({movies})=>{
             <div className='row g-3'>
                 {/* <button onClick={()=>console.log(providers)}>click</button> */}
                 {
-                    movies.map((movie,index)=>{
+                    movies.map((movie, index)=>{
                         return(
-                            <Film movie={movie} providers={providers[index]} key={index}/>
+                            <Film movie={movie} providers={providers[index]} key={movie.id}/>
                         )
                     })
                 }

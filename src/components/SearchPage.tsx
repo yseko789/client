@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useAppSelector } from '../hooks'
 
 import SearchBar from './SearchBar'
 import Nav from './Nav'
@@ -7,10 +8,12 @@ import FilmList from './FilmList'
 
 import {Movie} from '../model'
 
+import { RootState } from '../store'
 
 
 
 const SearchPage: React.FC = ()=>{
+    const myMovieList = useAppSelector((state)=>state.movieList.list)
 
     const [search, setSearch] = useState<string>("")
     const [result, setResult] = useState<Movie[]>([])
@@ -54,10 +57,13 @@ const SearchPage: React.FC = ()=>{
 
     return(
         <div>
+            <div>
+
+            </div>
             <Nav/>
             <SearchBar search={search} setSearch={setSearch}/>
-            {/* <h1>hello</h1>
-            <button onClick={()=>console.log(result)}>click</button> */}
+            {/* <h1>hello</h1> */}
+            <button onClick={()=>console.log(myMovieList)}>click</button>
             {
                 result.length ===0&&
                 <h1>Loading...</h1>

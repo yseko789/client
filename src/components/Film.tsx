@@ -1,7 +1,14 @@
 
 import {Movie, Provider} from '../model'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {AiFillPlusSquare, AiFillCheckSquare} from 'react-icons/ai'
+import { addMovie, removeMovie } from '../movieListSlice'
+
+import { RootState } from '../store'
+import { useAppDispatch, useAppSelector } from '../hooks'
+
+
+import {MovieProvider} from '../movieListSlice'
 
 interface MovieProps{
     movie: Movie,
@@ -9,15 +16,40 @@ interface MovieProps{
 }
 
 const Film:React.FC<MovieProps> = ({movie, providers})=>{
+
+    const myMovieList = useAppSelector((state)=>state.movieList.list)
+    const dispatch = useAppDispatch();
     
     const [clicked, setClicked] = useState(false)
     const [checked, setChecked] = useState(false)
+
+    useEffect(()=>{
+        if(myMovieList.length>0){
+            for(let i = 0; i<myMovieList.length; i++){
+                if(myMovieList[i][0].id === movie.id){
+                    setChecked(true)
+                    break
+                }
+            }
+
+        }
+    }, [])
+
 
     const providerLogos = providers?.map((provider, index)=>{
         return(
             <img className='logo' src = {`https://image.tmdb.org/t/p/w500${provider.logo}`} key = {index}/>
         )
     })
+
+    const checkHandler = ()=>{
+        if(checked){
+            dispatch(removeMovie(movie.id))
+        }else{
+            dispatch(addMovie([movie, providers]))
+        }
+        setChecked(!checked)
+    }
 
     return(
         <div className="col-6 col-md-4 col-lg-3">
@@ -38,7 +70,7 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
                             }
                         </div>
                     </div>
-                    <div className='icon' onClick={()=>setChecked(!checked)}>
+                    <div className='icon' onClick={()=>checkHandler()}>
                         {
                             !checked&&
                             <AiFillPlusSquare  color='white'  size='50px' />
