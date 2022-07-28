@@ -6,6 +6,7 @@ export interface Movie{
 }
 
 export interface Provider{
+    name: string,
     logo: string,
     id: number
 }

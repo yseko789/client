@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import { useAppSelector } from '../hooks'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../redux/hooks'
 
 import SearchBar from './SearchBar'
 import Nav from './Nav'
@@ -8,15 +8,16 @@ import FilmList from './FilmList'
 
 import {Movie} from '../model'
 
-import { RootState } from '../store'
+import MyList from './MyList'
 
 
 
 const SearchPage: React.FC = ()=>{
-    const myMovieList = useAppSelector((state)=>state.movieList.list)
 
     const [search, setSearch] = useState<string>("")
     const [result, setResult] = useState<Movie[]>([])
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         if(search===""){
@@ -57,21 +58,37 @@ const SearchPage: React.FC = ()=>{
 
     return(
         <div>
-            <div>
-
-            </div>
             <Nav/>
             <SearchBar search={search} setSearch={setSearch}/>
-            {/* <h1>hello</h1> */}
-            <button onClick={()=>console.log(myMovieList)}>click</button>
-            {
-                result.length ===0&&
-                <h1>Loading...</h1>
-            }
-            {
-                result.length > 0 &&
-                <FilmList movies={result}/>
-            }
+            <div className='my-list-section'>
+                <div className='container'>
+                    My List
+                </div>
+                <MyList/>
+            </div>
+            <button onClick={()=>navigate('/calculate')}>calculate</button>
+            <div className='movie-list-section'>
+                {
+                    search===""&&
+                    <div className='container'>
+                        Trending
+                    </div>    
+                }
+                {
+                    search!==""&&
+                    <div className='container'>
+                        Search: {search}
+                    </div>
+                }
+                {
+                    result.length ===0&&
+                    <h1>Loading...</h1>
+                }
+                {
+                    result.length > 0 &&
+                    <FilmList movies={result}/>
+                }
+            </div>
         </div>
     )
 }

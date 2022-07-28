@@ -22,7 +22,7 @@
 
 .movie-overview{
     color: white;
-    font-size: 12px;
+    font-size: 2vw;
     position: absolute;
     top: 0px;
 }
@@ -33,7 +33,32 @@
 
 .icon{
     position:absolute;
+    top: 40%;
+    left: 40%;
+    /* background-color: black; */
+}
+
+.myMovieList{
+    display: flex;
+    overflow-x: auto;
+    position: relative;
+}
+
+.myMovie{
+    position: relative;
+    margin-right: 20px;
+    /* height: 200px;
+    width: 200px; */
+}
+
+.myMoviePoster{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5%;
+}
+
+.myMovieTitle{
+    position:absolute;
     top: 0px;
-    right: 0px;
-    background-color: black;
+    color: white;
 }

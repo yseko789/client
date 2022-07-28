@@ -1,7 +1,7 @@
-import {Movie, Provider} from './model'
+import {Movie, Provider} from '../model'
 import {createSlice} from '@reduxjs/toolkit'
 
-export type MovieProvider = [Movie, Provider]
+export type MovieProvider = [Movie, Provider[]]
 
 interface movieListState{
     list: MovieProvider[]

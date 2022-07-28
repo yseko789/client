@@ -13,7 +13,7 @@ const FilmList: React.FC<MovieListProps> = ({movies})=>{
     const [providers, setProviders] = useState<Provider[][]>([])
 
     const convertToProvider = (provider: any): Provider=>{
-        return {logo: provider.logo_path, id: provider.provider_id}
+        return {name: provider.provider_name ,logo: provider.logo_path, id: provider.provider_id}
     }
 
     useEffect(()=>{
@@ -44,16 +44,11 @@ const FilmList: React.FC<MovieListProps> = ({movies})=>{
         }
         setProviders(providers=>[...providers, add ])
     }
-    const list = movies.map((movie, index)=>{
-        return(
-            <Film movie={movie} providers={providers.length>= index+1?providers[index]:[]} key={index} />
-        )
-    })
+   
 
     return(
         <div className='container'>
             <div className='row g-3'>
-                {/* <button onClick={()=>console.log(providers)}>click</button> */}
                 {
                     movies.map((movie, index)=>{
                         return(

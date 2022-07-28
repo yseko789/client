@@ -8,8 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 import SearchPage from './components/SearchPage';
+import CalculatePage from './components/CalculatePage';
 
-import {store} from './store'
+import {store} from './redux/store'
 
 
 
@@ -21,6 +22,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path = '/' element = {<SearchPage/>}/>
+        <Route path = '/account'/>
+        <Route path = '/list'/>
+        <Route path = '/subscriptions'/>
+        <Route path = '/calculate' element={<CalculatePage/>}/>
       </Routes>
     </BrowserRouter>
   </Provider>

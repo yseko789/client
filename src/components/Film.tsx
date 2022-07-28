@@ -1,14 +1,14 @@
 
 import {Movie, Provider} from '../model'
 import {useState, useEffect} from 'react'
-import {AiFillPlusSquare, AiFillCheckSquare} from 'react-icons/ai'
-import { addMovie, removeMovie } from '../movieListSlice'
+import {AiFillPlusSquare, AiFillCheckSquare, AiOutlineCheck} from 'react-icons/ai'
+import { addMovie, removeMovie } from '../redux/movieListSlice'
 
-import { RootState } from '../store'
-import { useAppDispatch, useAppSelector } from '../hooks'
+import { RootState } from '../redux/store'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
 
 
-import {MovieProvider} from '../movieListSlice'
+import {MovieProvider} from '../redux/movieListSlice'
 
 interface MovieProps{
     movie: Movie,
@@ -20,7 +20,7 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
     const myMovieList = useAppSelector((state)=>state.movieList.list)
     const dispatch = useAppDispatch();
     
-    const [clicked, setClicked] = useState(false)
+    // const [clicked, setClicked] = useState(false)
     const [checked, setChecked] = useState(false)
 
     useEffect(()=>{
@@ -52,7 +52,7 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
     }
 
     return(
-        <div className="col-6 col-md-4 col-lg-3">
+        <div className="col-4 col-md-3 col-lg-2">
             <div className="card">
                 
                 <div className = 'card-title text-center'>
@@ -61,24 +61,11 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
                     </div>
                 </div>
                 <div className='movie-body'>
-                    <div onClick={()=>setClicked(!clicked)}>
-                        <img className={`card-img movie-img ${clicked?'darken':''}`} src={movie.poster?`https://image.tmdb.org/t/p/w500${movie.poster}`:''}/>
-                        <div className='movie-overview py-5 px-2' >
-                            {
-                                clicked&&
-                                movie.overview
-                            }
-                        </div>
-                    </div>
-                    <div className='icon' onClick={()=>checkHandler()}>
-                        {
-                            !checked&&
-                            <AiFillPlusSquare  color='white'  size='50px' />
-                        }
-                        {
-                            checked&&
-                            <AiFillCheckSquare color='white' size='50px' />
-                        }
+                    <img className={`card-img movie-img ${checked?'darken':''}`} src={movie.poster?`https://image.tmdb.org/t/p/w500${movie.poster}`:''}onClick={()=>checkHandler()}/>
+                    <div className='icon'>
+                        {   checked&&
+                            <AiOutlineCheck color='white' size='70px'/>
+                        }   
                     </div>
                 </div>
                     
