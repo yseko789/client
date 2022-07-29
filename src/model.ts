@@ -11,3 +11,9 @@ export interface Provider{
     id: number
 }
 
+export interface User{
+    username: string,
+    email: string,
+    password: string
+}
+
