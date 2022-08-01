@@ -12,6 +12,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 import SearchPage from './components/SearchPage';
 import CalculatePage from './components/CalculatePage';
 import Register from './components/Register';
+import Login from './components/Login';
+import Logout from './components/Logout';
 
 import {store} from './redux/store'
 
@@ -45,6 +47,8 @@ root.render(
         <Routes>
           <Route path = '/' element = {<SearchPage/>}/>
           <Route path = '/register' element={<Register/>}/>
+          <Route path = '/login' element = {<Login/>}/>
+          <Route path = '/logout' element={<Logout/>}/>
           <Route path = '/account'/>
           <Route path = '/list'/>
           <Route path = '/subscriptions'/>

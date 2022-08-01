@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import '../../style/auth.css'
+import {useLazyQuery, gql} from '@apollo/client'
+import {LOGIN} from '../graphql/queries'
 
 interface LoginUser{
     email: string,
@@ -15,6 +16,11 @@ const Login: React.FC = ()=>{
     });
     const {email, password} = userData;
 
+    const [login,{error, loading, data}] = useLazyQuery(LOGIN,{
+        variables: {loginUser: userData}
+    })
+  
+
     const navigate = useNavigate();
 
     const changeHandler = (e:React.FormEvent<HTMLInputElement>)=>{
@@ -24,14 +30,16 @@ const Login: React.FC = ()=>{
     const submitHandler = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         try{
-            
+            const response = await login()
+            if(response.data.login.user._id){
+                console.log(response.data.token)
+                localStorage.setItem('token', response.data.login.token)
+                localStorage.setItem('userId', response.data.login.user._id)
+                navigate('/');
 
-            //store the token in local storage
-            // localStorage.setItem('token', userResponse.token);
-            // localStorage.setItem('username', userResponse.username);
-            // localStorage.setItem('userId', userResponse.userId)
-            //redirect to search page
-            navigate('/');
+            }else{
+                throw new Error('error')
+            }
         }catch(error)
         {
             console.log(error);

@@ -31,7 +31,7 @@ const Nav: React.FC = ()=>{
                   <Link className='nav-link' to = '/'>Account</Link>
                 </li>
                 <li>
-                  <Link className='nav-link' to = '/'>Logout</Link>
+                  <Link className='nav-link' to = '/logout'>Logout</Link>
                 </li>
               </ul>
             </div>
