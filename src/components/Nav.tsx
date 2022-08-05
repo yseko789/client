@@ -22,13 +22,16 @@ const Nav: React.FC = ()=>{
             >
               <ul className = 'nav navbar-nav ms-auto text-center '>
                 <li>
-                  <Link className='nav-link' to = '/'>Home</Link>
-                </li>
-                <li>
                   <Link className='nav-link' to = '/'>Search</Link>
                 </li>
                 <li>
-                  <Link className='nav-link' to = '/'>Account</Link>
+                  <Link className='nav-link' to = '/'>Movie List</Link>
+                </li>
+                <li>
+                  <Link className='nav-link' to = '/subscriptions'>Subscriptions</Link>
+                </li>
+                <li>
+                  <Link className='nav-link' to = '/account'>Account</Link>
                 </li>
                 <li>
                   <Link className='nav-link' to = '/logout'>Logout</Link>

@@ -16,6 +16,8 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 
 import {store} from './redux/store'
+import AccountPage from './components/AccountPage';
+import SubscriptionsPage from './components/SubscriptionsPage';
 
 const errorLink = onError(({graphQLErrors, networkError})=>{
   if(graphQLErrors){
@@ -49,9 +51,9 @@ root.render(
           <Route path = '/register' element={<Register/>}/>
           <Route path = '/login' element = {<Login/>}/>
           <Route path = '/logout' element={<Logout/>}/>
-          <Route path = '/account'/>
+          <Route path = '/account' element={<AccountPage/>}/>
           <Route path = '/list'/>
-          <Route path = '/subscriptions'/>
+          <Route path = '/subscriptions' element={<SubscriptionsPage/>}/>
           <Route path = '/calculate' element={<CalculatePage/>}/>
         </Routes>
       </BrowserRouter>

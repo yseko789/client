@@ -5,9 +5,28 @@ export const LOGIN = gql`
         login(loginUser: $loginUser){
             user{
                 _id
-                username
             },
             token
+        }
+    }
+`;
+
+export const GET_USER = gql`
+    query GetUser($userId: ID!){
+        getUser(userId: $userId){
+            username
+            email
+        }
+    }
+`;
+
+export const GET_SUBSCRIPTIONS = gql`
+    query GetSubscriptions($userId: ID!){
+        getSubscriptions(userId: $userId){
+            providerId
+            logo
+            name
+            rate
         }
     }
 `;

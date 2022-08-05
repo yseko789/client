@@ -29,13 +29,18 @@ const Register: React.FC =()=>{
         e.preventDefault()
         console.log(userData)
         try{
-            const id = await createUser({
+            const response = await createUser({
                 variables:{
                     userInput: userData
                 }
             })
-            console.log(id)
-            navigate('/')
+            if(response.data.createUser.user._id){
+                localStorage.setItem('token', response.data.createUser.token)
+                localStorage.setItem('userId', response.data.createUser.user._id)
+                navigate('/')
+            }else{
+                throw new Error('error')
+            }
         }catch(error){
             console.log(error);
 
