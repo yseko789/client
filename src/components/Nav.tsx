@@ -1,10 +1,11 @@
 import {Link} from 'react-router-dom';
 import {AiOutlineSearch, AiOutlineMenu} from 'react-icons/ai'
+import '../index.css'
 
 const Nav: React.FC = ()=>{
     return(
         <div className='container-fluid sticky-top'>
-          <nav className='navbar navbar-expand-md bg-light navbar-light navbar-static-top '>
+          <nav className='navbar navbar-expand-md navbarColor  navbar-static-top '>
             <Link className='navbar-brand link' to = '/'>Find My Subscriptions</Link>
             <AiOutlineMenu
               type='button'

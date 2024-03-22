@@ -18,6 +18,8 @@ const AccountPage: React.FC = ()=>{
       password: ""
     })
 
+    const [userUpdate, setUserUpdate] = useState<boolean>(false)
+
     const [editUser, {error}] = useMutation(EDIT_USER)
 
     const [getUser,{loading, data}] = useLazyQuery(GET_USER,{
@@ -41,6 +43,7 @@ const AccountPage: React.FC = ()=>{
                }
             })
             setUserData(user.data.editUser)
+            setUserUpdate(true)
         }catch(error){
             console.log(error)
         }
@@ -73,6 +76,10 @@ const AccountPage: React.FC = ()=>{
                         <div className="row">
                             <div className="d-flex flex-column">
                                 <h1 className="col-12">Account Details</h1>
+                                {
+                                    userUpdate&&
+                                    <h2 className='col-12 text-success'>User has been updated.</h2>
+                                }
                                 <div className="input-group mb-4">
                                     <div className = "input-group-prepend">
                                         <span className="input-group-text">Email</span>
@@ -86,7 +93,7 @@ const AccountPage: React.FC = ()=>{
                                     <input type = 'text' name = 'username' className="form-control" value={userData.username} onChange={changeHandler}/>
                                 </div>
                                 <div className="input-group mb-4">
-                                    <button className='btn col-12 custom-btn' type='button' onClick={editUserData}>
+                                    <button className='btn col-12 buttonColor' type='button' onClick={editUserData}>
                                         Save
                                     </button>
                                 </div>

@@ -1,3 +1,12 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid{
+    padding: 0 !important;
+}
+
 .logo{
     border-radius: 50%;
     height: 30px;
@@ -61,4 +70,25 @@
     position:absolute;
     top: 0px;
     color: white;
+}
+
+.backgroundColor{
+    background-color: white;
+}
+
+.navbarColor{
+    background-color: #CBF3F0 !important;
+}
+
+.buttonColor{
+    background-color: #2EC4B6 !important;
+}
+
+.movieListColor{
+    background-color: #FFBF69 !important;
+}
+
+.searchInput{
+    font-weight: bold;
+    font-size: 2em;
 }

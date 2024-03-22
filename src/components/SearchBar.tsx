@@ -19,7 +19,7 @@ const SearchBar: React.FC<Props> = ({search, setSearch})=>{
                         onChange = {(e)=>setSearch(e.target.value)}
                     />
                     <div className="input-group-prepend">
-                        <button className="btn" type="button">Search</button>
+                        <button className="btn buttonColor" type="button">Search</button>
                     </div>
                 </div>
             </div>

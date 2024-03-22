@@ -12,11 +12,18 @@ const MyList: React.FC = ()=>{
     })
     return(
         <div className='container'>
-
-            <div className='myMovieList'>
-                {list}
-            </div>
-            <button onClick={()=>console.log(myMovieList)}>see</button>
+            {
+                myMovieList.length > 0&&
+                <div className='myMovieList'>
+                    {list}
+                </div>
+            }
+            {
+                myMovieList.length == 0&&
+                <h2 className='text-center'>
+                    Select movies to add to the list!
+                </h2>
+            }
         </div>
     )
 }

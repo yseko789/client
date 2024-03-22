@@ -32,8 +32,10 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
                 }
             }
 
+        }else{
+            setChecked(false)
         }
-    }, [])
+    }, [myMovieList])
 
 
     const providerLogos = providers?.map((provider, index)=>{
@@ -53,7 +55,7 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
 
     return(
         <div className="col-4 col-md-3 col-lg-2">
-            <div className="card">
+            <div className="card" onClick={()=>checkHandler()}>
                 
                 <div className = 'card-title text-center'>
                     <div className='movie-title px-2'>
@@ -61,7 +63,7 @@ const Film:React.FC<MovieProps> = ({movie, providers})=>{
                     </div>
                 </div>
                 <div className='movie-body'>
-                    <img className={`card-img movie-img ${checked?'darken':''}`} src={movie.poster?`https://image.tmdb.org/t/p/w500${movie.poster}`:''}onClick={()=>checkHandler()}/>
+                    <img className={`card-img movie-img ${checked?'darken':''}`} src={movie.poster?`https://image.tmdb.org/t/p/w500${movie.poster}`:''}/>
                     <div className='icon'>
                         {   checked&&
                             <AiOutlineCheck color='white' size='70px'/>

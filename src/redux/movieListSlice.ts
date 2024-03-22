@@ -22,10 +22,13 @@ export const movieListSlice = createSlice({
         },
         removeMovie: (state, action)=>{
             state.list = state.list.filter(movieProvider=>movieProvider[0].id !== action.payload)
+        },
+        clearMovies: (state)=>{
+            state.list = []
         }
     }
 })
 
-export const {addMovie, removeMovie} = movieListSlice.actions
+export const {addMovie, removeMovie, clearMovies} = movieListSlice.actions
 
 export default movieListSlice.reducer

@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../redux/hooks'
+import { useAppDispatch } from '../redux/hooks'
+
+import { clearMovies} from '../redux/movieListSlice'
+
 
 import SearchBar from './SearchBar'
 import Nav from './Nav'
@@ -18,6 +21,8 @@ const SearchPage: React.FC = ()=>{
     const [result, setResult] = useState<Movie[]>([])
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
+
 
     useEffect(()=>{
         if(search===""){
@@ -59,36 +64,46 @@ const SearchPage: React.FC = ()=>{
     return(
         <div>
             <Nav/>
-            <SearchBar search={search} setSearch={setSearch}/>
-            <div className='my-list-section'>
-                <div className='container'>
-                    My List
-                </div>
-                <MyList/>
-            </div>
-            <button onClick={()=>navigate('/calculate')}>calculate</button>
-            <div className='movie-list-section'>
-                {
-                    search===""&&
-                    <div className='container'>
-                        Trending
-                    </div>    
-                }
-                {
-                    search!==""&&
-                    <div className='container'>
-                        Search: {search}
+            {/* <div className='container backgroundColor'> */}
+
+                <SearchBar search={search} setSearch={setSearch}/>
+                <div className='my-list-section mb-2'>
+                    <div className='container searchInput'>
+                        My List
                     </div>
-                }
-                {
-                    result.length ===0&&
-                    <h1>Loading...</h1>
-                }
-                {
-                    result.length > 0 &&
-                    <FilmList movies={result}/>
-                }
-            </div>
+                    <MyList/>
+                </div>
+                <div className='container'>
+                    <button className='btn col-6 btn-light' onClick = {()=>dispatch(clearMovies())}>Clear</button>
+                    <button className = 'btn col-6 buttonColor' onClick={()=>navigate('/calculate')}>Calculate</button>
+                </div>
+                <div className=' mt-4'>
+                    {
+                        search===""&&
+                        <div className='container'>
+                            <div className='searchInput'>
+                                Trending
+                            </div>
+                        </div>    
+                    }
+                    {
+                        search!==""&&
+                        <div className='container'>
+                            <div className='searchInput'>
+                                Search: {search}
+                            </div>
+                        </div>
+                    }
+                    {
+                        result.length ===0&&
+                        <h1>Loading...</h1>
+                    }
+                    {
+                        result.length > 0 &&
+                        <FilmList movies={result}/>
+                    }
+                </div>
+            {/* </div> */}
         </div>
     )
 }

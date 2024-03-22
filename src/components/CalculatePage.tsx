@@ -14,8 +14,6 @@ interface LogoAndMovies{
 }
 
 const CalculatePage: React.FC = ()=>{
-
-
     const myMovieList = useAppSelector((state)=>state.movieList.list)
 
     const providerToMovies: ProviderToMovies = {}
@@ -31,8 +29,11 @@ const CalculatePage: React.FC = ()=>{
         }
     }
 
+    
+
     const list = Object.keys(providerToMovies).map((key)=>{
         let movieList = providerToMovies[Number(key)].movies
+        
         let movieListElements = movieList.map((movie)=>{
             return(
                 <div className="myMovie col-3 col-md2 col-lg-1" key = {movie.id}>
@@ -40,9 +41,11 @@ const CalculatePage: React.FC = ()=>{
                 </div>
             )
         })
+        
         return(
-            <div className="container" key={Number(key)}>
-                <div className="provider-title container">
+            <div className="container p-2 mt-2 movieListColor" key={Number(key)}>
+                <div className="provider-title container p-2">
+                    <img className="logo" src = {`https://image.tmdb.org/t/p/w500${providerToMovies[Number(key)].logo}`}/>
                     {providerToMovies[Number(key)].name} ({providerToMovies[Number(key)].movies.length})
                 </div>
                 <div className="myMovieList">
@@ -57,10 +60,18 @@ const CalculatePage: React.FC = ()=>{
     return(
         <div>
             <Nav/>
-            <button onClick={()=>console.log(providerToMovies)}>Click</button>
-            {
-                list
-            }
+            <div className="container">
+                {   myMovieList.length >0&&
+                    list
+                }
+                {
+                    myMovieList.length==0&&
+                    <h1>
+                        You haven't added any movies yet!
+                    </h1>
+                }
+
+            </div>
             
         </div>
     )
